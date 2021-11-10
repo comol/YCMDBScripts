@@ -34,6 +34,7 @@ resource "yandex_mdb_postgresql_cluster" "mypg" {
 	  max_locks_per_transaction = 250
 	  join_collapse_limit = 200
 	  from_collapse_limit = 100
+	  synchronous_commit = "SYNCHRONOUS_COMMIT_OFF"
     }
   }
   

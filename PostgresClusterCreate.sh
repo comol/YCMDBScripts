@@ -47,7 +47,7 @@ yc postgres cluster create --name $clustername \
 # cluster settings
 # there are some issues with settings via command lint. set synchronious_commit to off and enable online_analize in UI
 yc postgres cluster update-config --name $clustername \
---set join_collapse_limit=200,from_collapse_limit=100,max_locks_per_transaction=500
+--set join_collapse_limit=200,from_collapse_limit=100,max_locks_per_transaction=500,synchronous_commit=SYNCHRONOUS_COMMIT_OFF 
 
 # list of hosts. just copy IP of master
 yc managed-postgresql hosts list --cluster-name $clustername

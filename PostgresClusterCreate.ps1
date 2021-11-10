@@ -17,7 +17,7 @@ yc init
 
 # create postgres cluster
 # for test
-#yc postgres cluster create --name $clustername --environment=production --network-name default --resource-preset s2.micro --host zone-id=ru-central1-c,subnet-name=default-ru-central1-c --disk-size 10 --disk-type network-ssd --user name=$username,password=$password --database name=$dbname,owner=$username
+#yc postgres cluster create --name $clustername --environment=production --postgresql-version 12-1c --network-name default --resource-preset s2.micro --host zone-id=ru-central1-c,subnet-name=default-ru-central1-c --disk-size 10 --disk-type network-ssd --user name=$username,password=$password --database name=$dbname,owner=$username
 
 # basic cluster for prod
 # hover tune at least username and password
@@ -25,7 +25,7 @@ yc postgres cluster create --name $clustername --environment=production --postgr
 
 # cluster settings
 # there are some issues with settings via command lint. set synchronious_commit to off and enable online_analize in UI
-yc postgres cluster update-config --name $clustername --set join_collapse_limit=200,from_collapse_limit=100,max_locks_per_transaction=500
+yc postgres cluster update-config --name $clustername --set join_collapse_limit=200,from_collapse_limit=100,max_locks_per_transaction=500,synchronous_commit=SYNCHRONOUS_COMMIT_OFF
 
 # list of hosts. just copy IP of master
 yc managed-postgresql hosts list --cluster-name $clustername
